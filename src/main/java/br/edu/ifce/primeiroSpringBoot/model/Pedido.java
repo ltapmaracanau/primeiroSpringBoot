@@ -1,45 +1,43 @@
 package br.edu.ifce.primeiroSpringBoot.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tbl_endereco")
-public class Endereco {
+@Table(name = "tbl_pedido")
+public class Pedido {
+	
 	@Id
 	@ GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private String logradouro;
-	private int numero;
-	@OneToOne(mappedBy = "endereco")
+	@ManyToOne()
 	private Clientes cliente;
 	
-	public String getLogradouro() {
-		return logradouro;
-	}
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-	public int getNumero() {
-		return numero;
-	}
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
+	@ManyToMany
+	private List<Produto> produtos;
+
+	
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public Clientes getCliente() {
 		return cliente;
 	}
+
 	public void setCliente(Clientes cliente) {
 		this.cliente = cliente;
 	}

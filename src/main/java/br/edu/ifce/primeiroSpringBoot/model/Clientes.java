@@ -1,6 +1,7 @@
 package br.edu.ifce.primeiroSpringBoot.model;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -8,7 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -35,6 +36,9 @@ public class Clientes {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
+	
+	@OneToMany(mappedBy = "cliente" )
+	private List<Pedido> pedido;
 
 	public Long getId() {
 		return id;
@@ -84,4 +88,12 @@ public class Clientes {
 		this.endereco = endereco;
 	}
 
+	public List<Pedido> getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(List<Pedido> pedido) {
+		this.pedido = pedido;
+	}
+	
 }
