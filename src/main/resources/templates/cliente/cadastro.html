@@ -78,15 +78,39 @@
 	        </nav>
 	
 	        <div class="container" id="cadastro">
-	            <form action="/cliente/salvar" method="POST">
+	            <form th:action="${cli.id == null} ? @{/cliente/salvar} : @{/cliente/editar }" th:object="${cli}" method="POST">
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
-	                        <label for="nome">Clientes</label>
+	                        <label for="nome">Cliente</label>
 	                        <input type="text" class="form-control" id="nome"
-	                               placeholder="Nome do cliente" autofocus="autofocus" name="nome" value=""/>
+	                               placeholder="Nome do cliente" autofocus="autofocus" name="nome" 
+	                              th:field="*{nome}"/>
 	                    </div>
+	                    
+	                    
+	                    <div class="form-group col-md-6">
+	                        <label for="nome">Rua</label>
+	                        <input type="text" class="form-control" id="logradouro"
+	                               placeholder="Logradouro do cliente" autofocus="autofocus" name="logradouro" 
+	                              th:field="*{endereco.logradouro}"/>
+	                    </div>
+	                    
+	                    <div class="form-group col-md-6">
+	                        <label for="email">Email</label>
+	                        <input type="text" class="form-control" id="email"
+	                               placeholder="Email do cliente" autofocus="autofocus" name="email" 
+	                                th:field="*{email}" />
+	                    </div>
+	                    
+	                    <div class="form-group col-md-6">
+	                        <label for="telefone">Telefone</label>
+	                        <input type="text" class="form-control" id="telefone"
+	                               placeholder="Telefone do cliente" autofocus="autofocus" name="telefone" 
+	                                th:field="*{telefone}" />
+	                    </div>
+	                    
 	                </div>
-	                <input type="hidden" id="id" name="id" value=""/>
+	                <input type="hidden" id="id" th:field="*{id}"/>
 	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 	            </form>
 	        </div>

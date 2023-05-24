@@ -16,6 +16,10 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
 
+/**
+ * @author cjunior
+ *
+ */
 @Entity
 @Table(name = "tbl_clientes")
 public class Clientes {
@@ -25,6 +29,7 @@ public class Clientes {
 
 	@Column(name = "nomeDoCliente", nullable = false)
 	private String nome;
+	
 	@Column(name = "numeroDoTelefone")
 	private String telefone;
 
@@ -33,6 +38,8 @@ public class Clientes {
 
 	@Transient
 	private int idade;
+	
+	private String email;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
@@ -48,10 +55,21 @@ public class Clientes {
 		this.id = id;
 	}
 
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getNome() {
 		return nome;
 	}
 
+	
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}

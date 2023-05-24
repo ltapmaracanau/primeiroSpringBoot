@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+ 							xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Spring-Boot Básico</title>
     <meta charset="UTF-8"/>
@@ -87,17 +88,19 @@
 	                    </tr>
 	                    </thead>
 	                    <tbody>
-	                    <tr>
-	                        <td>1</td>
-	                        <td>Corneli Gomes Furtado Júnior</td>
-	                         <td>cjunior@ifce.edu.br</td>
+	                    <tr th:each="cliente : ${clientes}">
+	                        <td th:text="${cliente.id}">1</td>
+	                        <td  th:text="${cliente.nome}"></td>
+	                         <td  th:text="${cliente.telefone}"></td>
 	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/cliente/editar/3" role="button">
+	                            <a class="btn btn-info btn-sm" th:href="@{/cliente/editar/{id} (id=${cliente.id})}" role="button">
 	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 	                            </a>
-	                            <button id="btn_departamentos/excluir/3" type="button" class="btn btn-danger btn-sm">
+	                            
+	                            <a class="btn btn-danger btn-sm" th:href="@{/cliente/excluir/{id} (id=${cliente.id})}" role="button">
 	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
+	                            </a>
+	                
 	                        </td>
 	                    </tr>
 	                    

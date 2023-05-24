@@ -1,5 +1,7 @@
 package br.edu.ifce.primeiroSpringBoot.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +18,25 @@ public class ClienteServiceImpl implements ClienteService {
 	public Clientes buscarPorId(Long id) {
 		return cliente.findById(id).orElseThrow(() -> new ClienteNotFoundException(id));
 	}
-
+	
+	@Override
 	public Clientes salvar(Clientes c) {
 		return cliente.save(c);
+	}
+
+	@Override
+	public List<Clientes> buscarTodos() {
+		return cliente.findAll();
+	}
+
+	@Override
+	public Clientes editar(Clientes c) {
+		return cliente.save(c);
+	}
+
+	@Override
+	public void excluir(Long id) {
+		cliente.deleteById(id);
 	}
 
 }
